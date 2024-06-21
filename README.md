@@ -4,7 +4,7 @@
 This document outlines the requirements and guidelines for the Cleric Query Agent Assignment. Your task is to develop an AI agent capable of accurately answering questions about applications deployed on a Kubernetes cluster.
 
 ## Objective
-Create an AI agent that interacts with a Kubernetes cluster to answer questions about its deployed applications. Your agent will be tested through an automated GitHub Actions pipeline using a Minikube cluster to simulate the Kubernetes environment.
+Create an AI agent that interacts with a Kubernetes cluster to answer questions about its deployed applications.
 
 ## Assignment Details
 
@@ -41,15 +41,10 @@ Your agent should provide a POST endpoint for question submission:
 - Return only the answer, without identifiers (e.g., "mongodb" instead of "mongodb-56c598c8fc")
 
 ## Submission Guidelines
-1. Submit your repository to [submission link]
-   - The validator will return your score within a few minutes
-   - If you encounter errors, wait a few minutes before retrying
-   - Do not refresh the browser to avoid losing your session
-2. Complete [this form] with the following:
-   - Your GitHub repository URL
-   - A 5-minute Loom video (use Loom.com only)
-     - 2 minutes: Explain your approach to solving the problem
-     - 3 minutes: Tell us about yourself and your interest in this field
+Submit your repository to [submission link](https://assignment-validator-test-oqwduhlfz6wsmduqmvvqvf.streamlit.app/)
+ - The validator will return your score within a few minutes
+ - If you encounter errors, wait a few minutes before retrying
+ - Do not refresh the browser to avoid losing your session
 
 ### Submission Requirements
 1. GitHub Repository
@@ -78,8 +73,3 @@ We recommend testing your agent locally before submission:
    A: "Running"
 3. Q: "How many nodes are there in the cluster?"
    A: "2"
-
-## Deadline
-Please submit your assignment by [insert deadline here].
-
-For any questions or clarifications, please contact [insert contact information].
