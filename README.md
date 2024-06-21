@@ -43,6 +43,7 @@ Your agent should provide a POST endpoint for question submission:
 ## Submission Guidelines
 Submit your repository to [submission link](https://assignment-validator-test-oqwduhlfz6wsmduqmvvqvf.streamlit.app/)
  - The validator will return your score within a few minutes
+ - Use logging if you want to check your outputs, make sure write logs to `agent.log`
  - If you encounter errors, wait a few minutes before retrying
  - Do not refresh the browser to avoid losing your session
 
