@@ -1,10 +1,10 @@
 # Cleric Query Agent Assignment
 
 ## Introduction
-This document outlines the requirements and guidelines for the Cleric Query Agent Assignment. Your task is to develop an AI agent capable of accurately answering questions about applications deployed on a Kubernetes cluster.
+This document outlines the requirements and guidelines for the Cleric Query Agent Assignment. Your task is to develop an AI agent capable of accurately answering queries about applications deployed on a Kubernetes cluster.
 
 ## Objective
-Create an AI agent that interacts with a Kubernetes cluster to answer questions about its deployed applications.
+Create an AI agent that interacts with a Kubernetes cluster to answer queries about its deployed applications.
 
 ## Assignment Details
 
@@ -14,30 +14,30 @@ Create an AI agent that interacts with a Kubernetes cluster to answer questions 
 - Utilize GPT-4 or a model with comparable performance for natural language processing
 
 ### API Specifications
-Your agent should provide a POST endpoint for question submission:
-- URL: `http://localhost:8000/query-agent`
+Your agent should provide a POST endpoint for query submission:
+- URL: `http://localhost:8000/query`
 - Port: 8000
 - Payload format:
   ```json
   {
-      "question": "How many pods are in the default namespace?"
+      "query": "How many pods are in the default namespace?"
   }
   ```
 - Response format (using Pydantic):
   ```python
   from pydantic import BaseModel
 
-  class SubmitQuestionResponse(BaseModel):
-      question: str
+  class QueryResponse(BaseModel):
+      query: str
       answer: str
   ```
 
-### Question Scope
-- Questions will require only read actions from your agent
+### Scope of Queries
+- Queries will require only read actions from your agent
 - Topics may include status, information, or logs of resources deployed on Minikube
 - Answers will not change dynamically
-- Approximately 10 questions will be asked
-- Questions are independent of each other
+- Approximately 10 queries will be asked
+- Queries are independent of each other
 - Return only the answer, without identifiers (e.g., "mongodb" instead of "mongodb-56c598c8fc")
 
 ## Submission Guidelines
@@ -60,14 +60,14 @@ We recommend testing your agent locally before submission:
 1. Install [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 2. Set up a local Kubernetes cluster
 3. Deploy sample applications
-4. Run your agent and test with sample questions
+4. Run your agent and test with sample queries
 
 ## Evaluation Criteria
 - Accuracy of answers
 - Code quality and organization
 - Clarity of explanation in README and video
 
-## Example Questions and Responses
+## Example Queries and Responses
 1. Q: "Which pod is spawned by my-deployment?"
    A: "my-pod"
 2. Q: "What is the status of the pod named 'example-pod'?"
