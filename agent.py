@@ -1,6 +1,4 @@
 import logging
-import subprocess
-from typing import Optional
 from flask import Flask, request, jsonify
 from pydantic import BaseModel, ValidationError
 
@@ -11,19 +9,21 @@ logging.basicConfig(level=logging.DEBUG,
 
 app = Flask(__name__)
 
-class AnswerResponse(BaseModel):
-    question: str
+
+class QueryResponse(BaseModel):
+    query: str
     answer: str
 
-@app.route('/query-agent', methods=['POST'])
-def get_question_and_facts():
+
+@app.route('/query', methods=['POST'])
+def create_query():
     try:
         # Extract the question from the request data
         request_data = request.json
-        question = request_data.get('question')
+        query = request_data.get('query')
         
         # Log the question
-        logging.info(f"Received question: {question}")
+        logging.info(f"Received query: {query}")
         
         # Here, you can implement your logic to generate an answer for the given question.
         # For simplicity, we'll just echo the question back in the answer.
@@ -33,7 +33,7 @@ def get_question_and_facts():
         logging.info(f"Generated answer: {answer}")
         
         # Create the response model
-        response = AnswerResponse(question=question, answer=answer)
+        response = QueryResponse(query=query, answer=answer)
         
         return jsonify(response.dict())
     
