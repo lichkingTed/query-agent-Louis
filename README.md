@@ -50,7 +50,7 @@ Submit your repository to [submission link](https://assignment-validator-test-oq
 ### Submission Requirements
 1. GitHub Repository
    - Include a `README.md` file describing your approach
-   - Ensure your main script is named `agent.py`
+   - Ensure your main script is named `main.py`
 2. Loom Video
    - Keep it informal and personal
    - Focus on your motivation and background
