@@ -41,7 +41,7 @@ Your agent should provide a POST endpoint for query submission:
 - Return only the answer, without identifiers (e.g., "mongodb" instead of "mongodb-56c598c8fc")
 
 ## Submission Guidelines
-Submit your repository to [submission link](https://assignment-validator-test-oqwduhlfz6wsmduqmvvqvf.streamlit.app/)
+Submit your repository to [submission link](https://query-agent-assignment-validator-347704744679.us-central1.run.app/)
  - The validator will return your score within a few minutes
  - Use logging if you want to check your outputs, make sure write logs to `agent.log`
  - If you encounter errors, wait a few minutes before retrying
