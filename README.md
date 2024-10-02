@@ -46,6 +46,7 @@ Submit your repository to [submission link](https://query-agent-assignment-valid
  - Use logging if you want to check your outputs, make sure write logs to `agent.log`
  - If you encounter errors, wait a few minutes before retrying
  - Do not refresh the browser to avoid losing your session
+ - Make sure to note your `Submission ID` for the Google form for the final submission.
 
 ### Submission Requirements
 1. GitHub Repository
@@ -54,6 +55,7 @@ Submit your repository to [submission link](https://query-agent-assignment-valid
 2. Loom Video
    - Keep it informal and personal
    - Focus on your motivation and background
+3. Submit the `Loom video` and `submission ID` for the final submission on this [Google Form Link](https://docs.google.com/forms/d/e/1FAIpQLScUpEklWG-hYCIsBFo9pD-SAtyaCsevhQSz6XRLKkLV_K3KuQ/viewform?usp=sf_link)
 
 ## Testing Your Agent
 We recommend testing your agent locally before submission:
