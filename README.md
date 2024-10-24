@@ -57,6 +57,12 @@ Submit your repository to [submission link](https://query-agent-assignment-valid
    - Focus on your motivation and background
 3. Submit the `Loom video` and `submission ID` for the final submission on this [Google Form Link](https://docs.google.com/forms/d/e/1FAIpQLScUpEklWG-hYCIsBFo9pD-SAtyaCsevhQSz6XRLKkLV_K3KuQ/viewform?usp=sf_link)
 
+## Submission Deadline:
+There is no specific deadline for submitting this assignment;  however, we expect it to be completed within a **reasonable amount of time**. 
+- We understand that personal and professional responsibilities can take priority, 
+and we encourage you to balance this assignment with your other commitments. 
+- Please aim to submit your work once you feel confident in your solution and it aligns with the objectives.
+
 ## Testing Your Agent
 We recommend testing your agent locally before submission:
 1. Install [Minikube](https://minikube.sigs.k8s.io/docs/start/)
