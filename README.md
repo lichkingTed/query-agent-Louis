@@ -13,6 +13,9 @@ Create an AI agent that interacts with a Kubernetes cluster to answer queries ab
 - The kubeconfig file will be located at `~/.kube/config`
 - Utilize GPT-4 or a model with comparable performance for natural language processing
 
+### Environment variables
+- Your API key will be passed as `OPENAI_API_KEY` to the environment at submission, please ensure to setup your script accordingly.
+
 ### API Specifications
 Your agent should provide a POST endpoint for query submission:
 - URL: `http://localhost:8000/query`
