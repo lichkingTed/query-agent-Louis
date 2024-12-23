@@ -98,106 +98,54 @@ class Processer:
             return f"Error: {e}"
         
         
-    def _get_cluster_info(self):
-        '''
-        Retrieves basic cluster information.
-        '''
+
+    def _get_cluster_info(self) -> str:
+        """
+        Gathers relevant information about the cluster, such as:
+          - Pods (names, statuses)
+          - Deployments (names, replicas)
+          - Services (names, types)
+          - Nodes (names, statuses)
+
+        Returns:
+        str: A string representation of the collected cluster information.
+        """
         try:
-            pods = self.helper.get_pods()
-            deployments = self.helper.get_deployments()
-            services = self.helper.get_services()
-            nodes = self.helper.get_nodes()
-            
+            pods = self.k8s_helper.get_pods()
+            deployments = self.k8s_helper.get_deployments()
+            services = self.k8s_helper.get_services()
+            nodes = self.k8s_helper.get_nodes()
+
             # Build a dictionary with relevant data
             info_dict = {
                 "pods": [
-                    {
-                        "name": p.metadata.name,
-                        "status": p.status.phase,
-                        "namespace": p.metadata.namespace,
-                        "ip": p.status.pod_ip,
-                        "node": p.spec.node_name,
-                        "containers": [
-                            {
-                                "name": c.name,
-                                "image": c.image,
-                                "ready": c.ready,
-                                "restart_count": c.restart_count if hasattr(c, 'restart_count') else 0
-                            } for c in p.status.container_statuses
-                        ] if p.status.container_statuses else [],
-                        "labels": p.metadata.labels,
-                        "creation_time": p.metadata.creation_timestamp.isoformat() if p.metadata.creation_timestamp else None,
-                        "volumes": [
-                            {
-                                "name": v.name,
-                                "type": next(iter(v.to_dict().keys() - {'name'}), None)
-                            } for v in p.spec.volumes
-                        ] if p.spec.volumes else []
-                    }
+                    {"name": p.metadata.name, "status": p.status.phase}
                     for p in pods.items
                 ],
                 "deployments": [
-                    {
-                        "name": d.metadata.name,
-                        "namespace": d.metadata.namespace,
-                        "replicas": d.spec.replicas,
-                        "available_replicas": d.status.available_replicas,
-                        "ready_replicas": d.status.ready_replicas,
-                        "strategy": d.spec.strategy.type if d.spec.strategy else None,
-                        "labels": d.metadata.labels,
-                        "selector": d.spec.selector.match_labels if d.spec.selector else None,
-                        "creation_time": d.metadata.creation_timestamp.isoformat() if d.metadata.creation_timestamp else None
-                    }
+                    {"name": d.metadata.name, "replicas": d.spec.replicas}
                     for d in deployments.items
                 ],
                 "services": [
-                    {
-                        "name": s.metadata.name,
-                        "namespace": s.metadata.namespace,
-                        "type": s.spec.type,
-                        "cluster_ip": s.spec.cluster_ip,
-                        "external_ip": s.spec.external_i_ps if hasattr(s.spec, 'external_i_ps') else None,
-                        "ports": [
-                            {
-                                "port": p.port,
-                                "target_port": p.target_port,
-                                "protocol": p.protocol
-                            } for p in s.spec.ports
-                        ] if s.spec.ports else [],
-                        "selector": s.spec.selector,
-                        "creation_time": s.metadata.creation_timestamp.isoformat() if s.metadata.creation_timestamp else None
-                    }
+                    {"name": s.metadata.name, "type": s.spec.type}
                     for s in services.items
                 ],
                 "nodes": [
                     {
                         "name": n.metadata.name,
-                        "status": [
-                            cond.type for cond in n.status.conditions
-                            if cond.status == "True"
-                        ] if n.status.conditions else [],
-                        "capacity": n.status.capacity,
-                        "allocatable": n.status.allocatable,
-                        "architecture": n.status.node_info.architecture if n.status.node_info else None,
-                        "container_runtime": n.status.node_info.container_runtime_version if n.status.node_info else None,
-                        "kernel_version": n.status.node_info.kernel_version if n.status.node_info else None,
-                        "os_image": n.status.node_info.os_image if n.status.node_info else None,
-                        "addresses": [
-                            {"type": addr.type, "address": addr.address}
-                            for addr in n.status.addresses
-                        ] if n.status.addresses else [],
-                        "labels": n.metadata.labels
+                        "status": n.status.conditions[-1].type
+                        if n.status.conditions
+                        else "Unknown"
                     }
                     for n in nodes.items
-                ]
+                ],
             }
-            logging.info(f"Cluster info: {info_dict}")
 
             return str(info_dict)
 
         except Exception as e:
-            logging.error(f"Error retrieving cluster info: {e}")
-            return f"Error: {e}"
+            logging.error(f"Error gathering cluster info: {str(e)}")
+            return str(e)
         
 
 
