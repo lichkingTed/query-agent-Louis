@@ -6,8 +6,8 @@ from flask import Flask, request, jsonify
 from pydantic import BaseModel, ValidationError
 from kubernetes import client, config
 
-load_dotenv()
-openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+openai_client = OpenAI()
 
 
 logging.basicConfig(
