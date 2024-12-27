@@ -1,10 +1,13 @@
 import os
 import logging
 from openai import OpenAI
-
+from dotenv import load_dotenv
 from flask import Flask, request, jsonify
 from pydantic import BaseModel, ValidationError
 from kubernetes import client, config
+
+load_dotenv()
+openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 logging.basicConfig(
@@ -19,7 +22,9 @@ try:
 except Exception as e:
     logging.error(f"Error loading kube config: {e}")
 
-openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+
+
 
 # ------------------------------------------------------------------------------
 # Pydantic Model for the Response
