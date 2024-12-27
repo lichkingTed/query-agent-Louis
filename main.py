@@ -19,7 +19,7 @@ try:
 except Exception as e:
     logging.error(f"Error loading kube config: {e}")
 
-oepnai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # ------------------------------------------------------------------------------
 # Pydantic Model for the Response
@@ -106,11 +106,11 @@ class QueryProcessor:
                 },
             ]
 
-            response = oepnai_client.chat.completions.create(
-                model="gpt-4", 
+            response = openai_client.chat.completions.create(
+                model="gpt-4o", 
                 messages=messages,
                 temperature=0.95,
-                max_tokens=2000
+                max_tokens=200
             )
 
             answer = response.choices[0].message.content.strip()
